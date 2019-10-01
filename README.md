@@ -19,13 +19,13 @@ git clone git@github.com:ksiehl/FittingForATGCBackground.git
 scram b -j 20
 
 # Combine the originally created background trees
-cd /afs/cern.ch/work/m/maiqbal/private/aTGC/
-mkdir FittingInputTrees
-cd FittingInputTrees
+cd /afs/cern.ch/work/k/ksiehl/public/ansar_project/
+mkdir background_output_storage
+cd background_output_storage
 mkdir el
 mkdir mu
-cd ../Samples_80X_Working/
-root -l ~/private/FittingForATGC/Background/CMSSW_5_3_32/src/FittingForATGCBackground/Modify_tree.cc
+cd ../ntuple_output_storage/
+root -l /afs/cern.ch/work/k/ksiehl/public/ansar_project/BCKGRND_STEP/CMSSW_5_3_32/src/FittingForATGCBackground/Modify_tree.cc
 
 # Move the new trees
 mv ../FittingInputTrees/ ~/private/FittingForATGC/Bacground/CMSSW_5_3_32/src/FittingForATGCBackground/InputTrees/
