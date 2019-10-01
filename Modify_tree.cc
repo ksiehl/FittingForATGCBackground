@@ -57,7 +57,7 @@ void fill_tree_with_cuts(TTree &oldtree, TTree &tree, TString ch)
 
 void save_tree(TString name, TTree &tree, TString ch)
 {
-	TString path	= "../FittingInputTrees/"+ch(0,2)+"/";
+	TString path	= "../background_output_storage/"+ch(0,2)+"/";
 	TFile * fileOut	= TFile::Open(path+"tree_"+name+"_"+ch(0,2)+".root","recreate");
 	tree.Write();
 	fileOut->Close();
