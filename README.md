@@ -58,6 +58,3 @@ python prepare_bkg_oneCat.py -b --channel el --readtrees
 # The workspace has to be copied to the Input folder in the directory of the signal estimation script
 
 ---------------------
-
-
-
