@@ -34,7 +34,7 @@ rm tree_WJets?_mu.root # this step can be skipped if you're worried about haddin
 cd -
 
 # Move the new trees
-mv ../FittingInputTrees/ ~/private/FittingForATGC/Bacground/CMSSW_5_3_32/src/FittingForATGCBackground/InputTrees/
+mv ../background_output_storage/ /afs/cern.ch/work/k/ksiehl//public/ansar_project/BCKGRND_STEP/CMSSW_5_3_32/src/FittingForATGCBackground/InputTrees/
 
 # Run the main script
 python prepare_bkg_oneCat.py -b --channel el --readtrees
