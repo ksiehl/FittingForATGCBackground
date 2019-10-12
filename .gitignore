@@ -1,6 +1,7 @@
-InputTrees
 *.d
 *.so
 *.pyc
-plots_??_HPV_900_4500
-cards_??_HPV_900_4500
+*.root
+*.png
+*.pdf
+*.txt

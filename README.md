@@ -48,6 +48,8 @@ gSystem->AddIncludePath("-I/cvmfs/cms.cern.ch/slc6_amd64_gcc472/lcg/roofit/5.32.
 
 # Run the main script; this produces the background (and SM signal) fitting functions, as well as the alpha transfer functions and stores them in workspaces and datasets
 python prepare_bkg_oneCat.py -b --channel el --readtrees
+
+python prepare_bkg_oneCat.py -b --channel mu --readtrees
 -b: batch mode
 -c: channel (el or mu)
 --readtrees: read the TTrees and save to RooDataHists (only needed once per channel)
