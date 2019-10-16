@@ -7,8 +7,6 @@
 #include <TMath.h>
 #include <iostream>
 
-//#define ELEC_CHANNEL
-#define MUON_CHANNEL
 
 void merge_trees(std::vector<TString> files, TChain &chain)
 {
@@ -39,7 +37,7 @@ void fill_tree_with_cuts(TTree &oldtree, TTree &tree, TString ch)
 		oldtree.SetBranchAddress("bit_HLT_Ele_115",&bit_HLT_Ele_115);
 	}
 	oldtree.SetBranchAddress("costhetastar",&costhetastar);
-	
+
 
 	Long64_t nEntries	= oldtree.GetEntries();
 
@@ -71,48 +69,11 @@ void save_tree(TString name, TTree &tree, TString ch)
 
 void make_trees(TString ch)
 {
-#ifdef ELEC_CHANNEL
-	std::vector<TString> WJets_names;
-#endif
-	
 	std::vector<TString> TTbar_names;
 	std::vector<TString> STop_names;
 	std::vector<TString> WW_names;
 	std::vector<TString> WZ_names;
 	std::vector<TString> data_names;
-
-#ifdef MUON_CHANNEL
-	//muon wjets require separate steps due to size
-	std::vector<TString> WJets0_names;
-	std::vector<TString> WJets1_names;
-	std::vector<TString> WJets2_names;
-#endif
-
-#ifdef ELEC_CHANNEL
-	WJets_names.push_back("WJets_Ht100To200_"+ch+".root");
-	WJets_names.push_back("WJets_Ht200To400_"+ch+".root");
-	WJets_names.push_back("WJets_Ht400To600_"+ch+".root");
-	WJets_names.push_back("WJets_Ht600To800_"+ch+".root");
-	WJets_names.push_back("WJets_Ht800To1200_"+ch+".root");
-	WJets_names.push_back("WJets_Ht1200To2500_"+ch+".root");
-	WJets_names.push_back("WJets_Ht2500ToInf_"+ch+".root");
-	//WJets_names.push_back("WJets_Pt100To250_"+ch+".root");
-	//WJets_names.push_back("WJets_Pt250To400_"+ch+".root");
-	//WJets_names.push_back("WJets_Pt400To600_"+ch+".root");
-	//WJets_names.push_back("WJets_Pt600ToInf_"+ch+".root");
-#endif
-
-#ifdef MUON_CHANNEL
-	WJets0_names.push_back("WJets_Ht100To200_"+ch+".root");
-	WJets0_names.push_back("WJets_Ht200To400_"+ch+".root");
-	WJets0_names.push_back("WJets_Ht400To600_"+ch+".root");
-	WJets0_names.push_back("WJets_Ht2500ToInf_"+ch+".root");
-
-	WJets1_names.push_back("WJets_Ht800To1200_"+ch+".root");
-	WJets1_names.push_back("WJets_Ht1200To2500_"+ch+".root");
-
-	WJets2_names.push_back("WJets_Ht600To800_"+ch+".root");
-#endif
 
 	TTbar_names.push_back("ttbar_"+ch+".root");
 
@@ -127,34 +88,6 @@ void make_trees(TString ch)
 	WZ_names.push_back("WZ_"+ch+".root");
 
 	data_names.push_back("data_"+ch+".root");
-
-#ifdef ELEC_CHANNEL
-	TChain WJets_old("BasicTree");
-	merge_trees(WJets_names,WJets_old);
-	TTree * WJets_new	= WJets_old.CloneTree(0);
-	std::cout<<"Reading W+jets..."<<std::endl;
-	fill_tree_with_cuts(WJets_old,*WJets_new,ch);
-#endif
-
-#ifdef MUON_CHANNEL
-	TChain WJets0_old("BasicTree");
-	merge_trees(WJets0_names,WJets0_old);
-	TTree * WJets0_new	= WJets0_old.CloneTree(0);
-	std::cout<<"Reading W+jets0..."<<std::endl;
-	fill_tree_with_cuts(WJets0_old,*WJets0_new,ch);
-
-	TChain WJets1_old("BasicTree");
-	merge_trees(WJets1_names,WJets1_old);
-	TTree * WJets1_new	= WJets1_old.CloneTree(0);
-	std::cout<<"Reading W+jets1..."<<std::endl;
-	fill_tree_with_cuts(WJets1_old,*WJets1_new,ch);
-
-	TChain WJets2_old("BasicTree");
-	merge_trees(WJets2_names,WJets2_old);
-	TTree * WJets2_new	= WJets2_old.CloneTree(0);
-	std::cout<<"Reading W+jets2..."<<std::endl;
-	fill_tree_with_cuts(WJets2_old,*WJets2_new,ch);
-#endif
 
 	std::cout<<"Reading TTbar..."<<std::endl;
 	TChain TTbar_old("BasicTree");
@@ -192,28 +125,85 @@ void make_trees(TString ch)
 	save_tree("WW",*WW_new,ch);
 	save_tree("WZ",*WZ_new,ch);
 	save_tree("data",*data_new,ch);
+}
 
-#ifdef ELEC_CHANNEL	
+void make_el_trees(TString ch)
+{
+	std::vector<TString> WJets_names;
+
+	WJets_names.push_back("WJets_Ht100To200_"+ch+".root");
+	WJets_names.push_back("WJets_Ht200To400_"+ch+".root");
+	WJets_names.push_back("WJets_Ht400To600_"+ch+".root");
+	WJets_names.push_back("WJets_Ht600To800_"+ch+".root");
+	WJets_names.push_back("WJets_Ht800To1200_"+ch+".root");
+	WJets_names.push_back("WJets_Ht1200To2500_"+ch+".root");
+	WJets_names.push_back("WJets_Ht2500ToInf_"+ch+".root");
+	//WJets_names.push_back("WJets_Pt100To250_"+ch+".root");
+	//WJets_names.push_back("WJets_Pt250To400_"+ch+".root");
+	//WJets_names.push_back("WJets_Pt400To600_"+ch+".root");
+	//WJets_names.push_back("WJets_Pt600ToInf_"+ch+".root");
+
+	TChain WJets_old("BasicTree");
+	merge_trees(WJets_names,WJets_old);
+	TTree * WJets_new	= WJets_old.CloneTree(0);
+	std::cout<<"Reading W+jets..."<<std::endl;
+	fill_tree_with_cuts(WJets_old,*WJets_new,ch);
+  
 	save_tree("WJets",*WJets_new,ch);
-#endif
+}
 
-#ifdef MUON_CHANNEL	
+void make_mu_trees(TString ch)
+{
+	//muon wjets require separate steps due to size
+	std::vector<TString> WJets0_names;
+	std::vector<TString> WJets1_names;
+	std::vector<TString> WJets2_names;
+
+	WJets0_names.push_back("WJets_Ht100To200_"+ch+".root");
+	WJets0_names.push_back("WJets_Ht200To400_"+ch+".root");
+	WJets0_names.push_back("WJets_Ht400To600_"+ch+".root");
+	WJets0_names.push_back("WJets_Ht2500ToInf_"+ch+".root");
+
+	WJets1_names.push_back("WJets_Ht800To1200_"+ch+".root");
+	WJets1_names.push_back("WJets_Ht1200To2500_"+ch+".root");
+
+	WJets2_names.push_back("WJets_Ht600To800_"+ch+".root");
+
+	TChain WJets0_old("BasicTree");
+	merge_trees(WJets0_names,WJets0_old);
+	TTree * WJets0_new	= WJets0_old.CloneTree(0);
+	std::cout<<"Reading W+jets0..."<<std::endl;
+	fill_tree_with_cuts(WJets0_old,*WJets0_new,ch);
+
+	TChain WJets1_old("BasicTree");
+	merge_trees(WJets1_names,WJets1_old);
+	TTree * WJets1_new	= WJets1_old.CloneTree(0);
+	std::cout<<"Reading W+jets1..."<<std::endl;
+	fill_tree_with_cuts(WJets1_old,*WJets1_new,ch);
+
+	TChain WJets2_old("BasicTree");
+	merge_trees(WJets2_names,WJets2_old);
+	TTree * WJets2_new	= WJets2_old.CloneTree(0);
+	std::cout<<"Reading W+jets2..."<<std::endl;
+	fill_tree_with_cuts(WJets2_old,*WJets2_new,ch);
+
 	save_tree("WJets0",*WJets0_new,ch);
 	save_tree("WJets1",*WJets1_new,ch);
 	save_tree("WJets2",*WJets2_new,ch);
-#endif
 }
 
 void Modify_tree_angles()
 {
-#ifdef ELEC_CHANNEL
 	std::cout<<"Reading electron trees"<<std::endl;
 	make_trees("ele");
-#endif
 
-#ifdef MUON_CHANNEL
 	std::cout<<"Reading muon trees"<<std::endl;
 	make_trees("mu");
-#endif
+
+	std::cout <<"Reading electron W+jets trees"<<std::endl;
+	make_el_trees("ele");
+
+	std::cout <<"Reading muon W+jets trees"<<std::endl;
+	make_mu_trees("mu");
 }
 
