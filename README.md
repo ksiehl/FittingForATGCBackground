@@ -43,12 +43,15 @@ mv ../background_output_storage/ /afs/cern.ch/work/k/ksiehl//public/ansar_projec
 # New PDFs can be added in PDFs/HWWLVJRooPdfs.cxx, which has to be compiled in ROOT using (in this order)
 # But before compiling the c scripts, we have to tell ROOT where Roofit headers are since CMS builds RooFit not as a part of ROOT.
 
+root -b
 gSystem->AddIncludePath("-I/cvmfs/cms.cern.ch/slc6_amd64_gcc472/lcg/roofit/5.32.03-cms/include/");
 
 .L PdfDiagonalizer.cc+
 .L Util.cxx+
 .L hyperg_2F1.c+
 .L HWWLVJRooPdfs.cxx+
+
+.q
 
 # Run the main script; this produces the background (and SM signal) fitting functions, as well as the alpha transfer functions and stores them in workspaces and datasets
 python prepare_bkg_oneCat.py -b --channel el --readtrees
