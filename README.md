@@ -3,9 +3,13 @@ BACKGROUND ESTIMATION
 
 ```
 This script creates the Pdfs for the background contributions and extracts the alpha function for the W+jets background.
+NOTE: This is only gauranteed to work in SLC6
 
 Setup Instructions
 ------------------
+
+# Make sure you have the correct architecture
+export SCRAM_ARCH=slc6_amd64_gcc472
 
 # Setup CMSSW in ~/private/FittingForATGC/Bacground/
 cmsrel CMSSW_5_3_32
