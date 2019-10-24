@@ -190,7 +190,7 @@ void make_mu_trees(TString ch)
 	save_tree("WJets2",*WJets2_new,ch);
 }
 
-void Modify_tree_angles()
+void Modify_tree()
 {
 	std::cout<<"Reading electron trees"<<std::endl;
 	make_trees("ele");
