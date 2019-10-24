@@ -1883,7 +1883,7 @@ objName ==objName_before ):
                     angleval=options.anglecut;
 
                     self.isGoodEvent = 0;   
-                    if treeIn.MWW_SD> rrv_mass_lvj.getMin() and treeIn.MWW_SD<rrv_mass_lvj.getMax() and tmp_jet_mass>rrv_mass_j.getMin() and tmp_jet_mass<rrv_mass_j.getMax() and costhetastar < angleval:
+                    if treeIn.MWW_SD> rrv_mass_lvj.getMin() and treeIn.MWW_SD<rrv_mass_lvj.getMax() and tmp_jet_mass>rrv_mass_j.getMin() and tmp_jet_mass<rrv_mass_j.getMax() and abs(costhetastar) < angleval:
                         self.isGoodEvent = 1;  
          
                     if self.isGoodEvent == 1:
