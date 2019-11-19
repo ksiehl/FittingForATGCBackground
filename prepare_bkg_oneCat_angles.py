@@ -1880,10 +1880,12 @@ objName ==objName_before ):
 
                     tmp_jet_mass=getattr(treeIn, 'jet_mass_softdrop_PUPPI');
                     costhetastar=getattr(treeIn, 'costhetastar');
+		    costhetaone=getattr(treeIn, 'costheta1');
+		    costhetatwo=getattr(treeIn, 'costheta2');
                     angleval=options.anglecut;
 
                     self.isGoodEvent = 0;   
-                    if treeIn.MWW_SD> rrv_mass_lvj.getMin() and treeIn.MWW_SD<rrv_mass_lvj.getMax() and tmp_jet_mass>rrv_mass_j.getMin() and tmp_jet_mass<rrv_mass_j.getMax() and abs(costhetastar) < angleval:
+                    if treeIn.MWW_SD> rrv_mass_lvj.getMin() and treeIn.MWW_SD<rrv_mass_lvj.getMax() and tmp_jet_mass>rrv_mass_j.getMin() and tmp_jet_mass<rrv_mass_j.getMax() and abs(costhetastar) < angleval and abs(costheta2) < 0.6 and costheta1 < 0.6:
                         self.isGoodEvent = 1;  
          
                     if self.isGoodEvent == 1:
