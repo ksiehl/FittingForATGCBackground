@@ -1880,8 +1880,8 @@ objName ==objName_before ):
 
                     tmp_jet_mass=getattr(treeIn, 'jet_mass_softdrop_PUPPI');
                     costhetastar=getattr(treeIn, 'costhetastar');
-		    costhetaone=getattr(treeIn, 'costheta1');
-		    costhetatwo=getattr(treeIn, 'costheta2');
+		    costheta1=getattr(treeIn, 'costheta1');
+		    costheta2=getattr(treeIn, 'costheta2');
                     angleval=options.anglecut;
 
                     self.isGoodEvent = 0;   
