@@ -31,7 +31,9 @@ parser.add_option('--hi', action='store', dest='mlvj_hi', type='float', default=
 parser.add_option('--lo', action='store', dest='mlvj_lo', type='float', default=900, help='set lower cut on MWV, mat cause problems')
 parser.add_option('-r','--readtrees', action='store_true', dest='read_trees', default=False, help='read data and MC from TTrees, has to be done when range or binning is changed -> takes much longer')
 parser.add_option('--noplots', action='store_true', dest='noplots', default=False, help='dont make any plots')
-parser.add_option('--starangle', action='store', dest='anglecut', type='float', default=1.0, help='place a cut on theta star')
+parser.add_option('--starangle', action='store', dest='starcut', type='float', default=1.0, help='place a cut on theta star')
+parser.add_option('--oneangle', action='store', dest='onecut', type='float', default=1.0, help='place a cut on theta1')
+parser.add_option('--twoangle', action='store', dest='twocut', type='float', default=1.0, help='place a cut on theta2')
 
 
 (options, args) = parser.parse_args()
@@ -1882,10 +1884,12 @@ objName ==objName_before ):
                     costhetastar=getattr(treeIn, 'costhetastar');
 		    costheta1=getattr(treeIn, 'costheta1');
 		    costheta2=getattr(treeIn, 'costheta2');
-                    angleval=options.anglecut;
+                    starval=options.starcut;
+		    twoval=options.twocut;
+		    oneval=options.onecut;
 
                     self.isGoodEvent = 0;   
-                    if treeIn.MWW_SD> rrv_mass_lvj.getMin() and treeIn.MWW_SD<rrv_mass_lvj.getMax() and tmp_jet_mass>rrv_mass_j.getMin() and tmp_jet_mass<rrv_mass_j.getMax() and abs(costhetastar) < angleval and abs(costheta2) < 0.6 and costheta1 < 0.6:
+                    if treeIn.MWW_SD> rrv_mass_lvj.getMin() and treeIn.MWW_SD<rrv_mass_lvj.getMax() and tmp_jet_mass>rrv_mass_j.getMin() and tmp_jet_mass<rrv_mass_j.getMax() and abs(costhetastar) < starval and abs(costheta2) < twoval and costheta1 < oneval:
                         self.isGoodEvent = 1;  
          
                     if self.isGoodEvent == 1:
