@@ -7,6 +7,9 @@
 #include <TMath.h>
 #include <iostream>
 
+const Double_t starcut = 2.0;
+const Double_t onecut = 0.6;
+const Double_t twocut = 0.6;
 
 void merge_trees(std::vector<TString> files, TChain &chain)
 {
@@ -21,6 +24,7 @@ void fill_tree_with_cuts(TTree &oldtree, TTree &tree, TString ch)
 	Bool_t bit_HLT_Ele_45, bit_HLT_Ele_115;
 	Bool_t passTrigger=true;
 	METCUT	= ch=="ele" ? 110. : 40.;
+	Double_t costheta1, costheta2, costhetastar;
 
 	oldtree.SetBranchAddress("jet_pt",&jet_pt);
 	oldtree.SetBranchAddress("jet_tau21_PUPPI",&jet_tau21_PUPPI);
@@ -35,7 +39,9 @@ void fill_tree_with_cuts(TTree &oldtree, TTree &tree, TString ch)
 		oldtree.SetBranchAddress("bit_HLT_Ele_45",&bit_HLT_Ele_45);
 		oldtree.SetBranchAddress("bit_HLT_Ele_115",&bit_HLT_Ele_115);
 	}
-
+	oldtree.SetBranchAddress("costheta1",&costheta1);
+	oldtree.SetBranchAddress("costheta2",&costheta2);
+	oldtree.SetBranchAddress("costhetastar",&costhetastar);
 
 	Long64_t nEntries	= oldtree.GetEntries();
 
@@ -45,7 +51,7 @@ void fill_tree_with_cuts(TTree &oldtree, TTree &tree, TString ch)
 	{
 		oldtree.GetEntry(i);
 		//if (ch=="ele") passTrigger=(bit_HLT_Ele_45 || bit_HLT_Ele_115);
-		if(jet_pt>200. && jet_tau21_PUPPI<0.55 && jet_mass_softdrop_PUPPI<150. && jet_mass_softdrop_PUPPI>40. && W_pt>200. && fabs(deltaR_LeptonWJet)>TMath::Pi()/2 && fabs(deltaPhi_WJetMet)>2. && fabs(deltaPhi_WJetWlep)>2. && nbtag==0 && pfMET>METCUT && passTrigger)
+		if(jet_pt>200. && jet_tau21_PUPPI<0.55 && jet_mass_softdrop_PUPPI<150. && jet_mass_softdrop_PUPPI>40. && W_pt>200. && fabs(deltaR_LeptonWJet)>TMath::Pi()/2 && fabs(deltaPhi_WJetMet)>2. && fabs(deltaPhi_WJetWlep)>2. && nbtag==0 && pfMET>METCUT && passTrigger && fabs(costhetastar) < starcut && costheta1 < onecut && fabs(costheta2) < twocut)
 		{
 			tree.Fill();
 			if(used_events%1000==0 && i!=0)
