@@ -1888,9 +1888,9 @@ objName ==objName_before ):
 		    twoval=options.twocut;
 		    oneval=options.onecut;
 
-		    print "theta* cut is ", starcut;
-		    print "theta1 cut is ", onecut;
-		    print "theta2 cut is ", twocut;
+		    #print "theta* cut is ", starval;
+		    #print "theta1 cut is ", oneval;
+		    #print "theta2 cut is ", twoval;
 
                     self.isGoodEvent = 0;   
                     if treeIn.MWW_SD> rrv_mass_lvj.getMin() and treeIn.MWW_SD<rrv_mass_lvj.getMax() and tmp_jet_mass>rrv_mass_j.getMin() and tmp_jet_mass<rrv_mass_j.getMax() and abs(costhetastar) < starval and abs(costheta2) < twoval and costheta1 < oneval:
