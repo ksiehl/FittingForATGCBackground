@@ -29,7 +29,7 @@ cd background_output_storage
 mkdir el
 mkdir mu
 cd ../ntuple_output_storage/
-root -l /afs/cern.ch/work/k/ksiehl/public/ansar_project/BCKGRND_STEP/CMSSW_5_3_32/src/FittingForATGCBackground/Modify_tree.cc
+root -l ../BCKGRND_STEP/CMSSW_5_3_32/src/FittingForATGCBackground/Modify_tree.cc
 
 # hadd the muon wjets together
 cd ../background_output_storage/mu/
