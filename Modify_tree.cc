@@ -198,13 +198,13 @@ void make_mu_trees(TString ch)
 	save_tree("WJets2",*WJets2_new,ch);
 }
 
-voud make_signal_trees(TString ch)
+void make_signal_trees(TString ch)
 {
 	std::vector<TString>signalWW_names;
 	std::vector<TString>signalWZ_names;
   
-	signalWW_names.push_back("WW-aTGC"+ch+".root");
-	signalWZ_names.push_back("WZ-aTGC"+ch+".root");
+	signalWW_names.push_back("WW-aTGC-"+ch+".root");
+	signalWZ_names.push_back("WZ-aTGC-"+ch+".root");
 
 	std::cout<<"Reading signalWW..."<<std::endl;
 	TChain signalWW_old("BasicTree");
