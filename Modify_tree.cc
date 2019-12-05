@@ -78,6 +78,7 @@ void make_trees(TString ch)
 	std::vector<TString> WW_names;
 	std::vector<TString> WZ_names;
 	std::vector<TString> data_names;
+	
 
 	TTbar_names.push_back("ttbar_"+ch+".root");
 
@@ -92,6 +93,7 @@ void make_trees(TString ch)
 	WZ_names.push_back("WZ_"+ch+".root");
 
 	data_names.push_back("data_"+ch+".root");
+
 
 	std::cout<<"Reading TTbar..."<<std::endl;
 	TChain TTbar_old("BasicTree");
@@ -196,6 +198,30 @@ void make_mu_trees(TString ch)
 	save_tree("WJets2",*WJets2_new,ch);
 }
 
+voud make_signal_trees(TString ch)
+{
+	std::vector<TString>signalWW_names;
+	std::vector<TString>signalWZ_names;
+  
+	signalWW_names.push_back("WW-aTGC"+ch+".root");
+	signalWZ_names.push_back("WZ-aTGC"+ch+".root");
+
+	std::cout<<"Reading signalWW..."<<std::endl;
+	TChain signalWW_old("BasicTree");
+	merge_trees(signalWW_names,signalWW_old);
+	TTree * signalWW_new		= signalWW_old.CloneTree(0);
+	fill_tree_with_cuts(signalWW_old,*signalWW_new,ch);
+
+	std::cout<<"Reading signalWZ..."<<std::endl;
+	TChain signalWZ_old("BasicTree");
+	merge_trees(signalWZ_names,signalWZ_old);
+	TTree * signalWZ_new		= signalWZ_old.CloneTree(0);
+	fill_tree_with_cuts(signalWZ_old,*signalWZ_new,ch);
+
+	save_tree("signalWW",*signal_new,ch);
+	save_tree("signalWZ",*signal_new,ch);
+}
+
 void Modify_tree()
 {
 	std::cout<<"Reading electron trees"<<std::endl;
@@ -209,5 +235,11 @@ void Modify_tree()
 
 	std::cout <<"Reading muon W+jets trees"<<std::endl;
 	make_mu_trees("mu");
+
+	std::cout <<"Reading electron signal trees"<<std::endl;
+	make_signal_trees("ele");
+
+	std::cout <<"Reading muon signal trees"<<std::endl;
+	make_signal_trees("mu");
 }
 
