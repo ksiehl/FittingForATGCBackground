@@ -203,8 +203,8 @@ void make_signal_trees(TString ch)
 	std::vector<TString>signalWW_names;
 	std::vector<TString>signalWZ_names;
   
-	signalWW_names.push_back("WW-aTGC-"+ch+".root");
-	signalWZ_names.push_back("WZ-aTGC-"+ch+".root");
+	signalWW_names.push_back("WW-aTGC_"+ch+".root");
+	signalWZ_names.push_back("WZ-aTGC_"+ch+".root");
 
 	std::cout<<"Reading signalWW..."<<std::endl;
 	TChain signalWW_old("BasicTree");
