@@ -218,8 +218,8 @@ void make_signal_trees(TString ch)
 	TTree * signalWZ_new		= signalWZ_old.CloneTree(0);
 	fill_tree_with_cuts(signalWZ_old,*signalWZ_new,ch);
 
-	save_tree("signalWW",*signal_new,ch);
-	save_tree("signalWZ",*signal_new,ch);
+	save_tree("signalWW",*signalWW_new,ch);
+	save_tree("signalWZ",*signalWZ_new,ch);
 }
 
 void Modify_tree()
