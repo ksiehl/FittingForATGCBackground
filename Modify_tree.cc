@@ -8,8 +8,8 @@
 #include <iostream>
 
 const Double_t starcut = 2.0;
-const Double_t onecut = 0.6;
-const Double_t twocut = 0.6;
+const Double_t onecut = 2.0;
+const Double_t twocut = 2.0;
 
 void merge_trees(std::vector<TString> files, TChain &chain)
 {
