@@ -31,9 +31,9 @@ parser.add_option('--hi', action='store', dest='mlvj_hi', type='float', default=
 parser.add_option('--lo', action='store', dest='mlvj_lo', type='float', default=900, help='set lower cut on MWV, mat cause problems')
 parser.add_option('-r','--readtrees', action='store_true', dest='read_trees', default=False, help='read data and MC from TTrees, has to be done when range or binning is changed -> takes much longer')
 parser.add_option('--noplots', action='store_true', dest='noplots', default=False, help='dont make any plots')
-parser.add_option('--starangle', action='store', dest='starcut', type='float', default=1.0, help='place a cut on theta star')
-parser.add_option('--oneangle', action='store', dest='onecut', type='float', default=1.0, help='place a cut on theta1')
-parser.add_option('--twoangle', action='store', dest='twocut', type='float', default=1.0, help='place a cut on theta2')
+parser.add_option('--starangle', action='store', dest='starcut', type='float', default=2.0, help='place a cut on theta star')
+parser.add_option('--oneangle', action='store', dest='onecut', type='float', default=2.0, help='place a cut on theta1')
+parser.add_option('--twoangle', action='store', dest='twocut', type='float', default=2.0, help='place a cut on theta2')
 
 
 (options, args) = parser.parse_args()
