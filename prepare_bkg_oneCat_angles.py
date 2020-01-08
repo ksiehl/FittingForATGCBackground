@@ -412,10 +412,10 @@ objName ==objName_before ):
 
         cMassFit.SaveAs(rlt_file.Data());
 
-        rlt_file.ReplaceAll(".png",".pdf");
-        cMassFit.SaveAs(rlt_file.Data());
+#        rlt_file.ReplaceAll(".png",".pdf");
+#        cMassFit.SaveAs(rlt_file.Data());
 
-        rlt_file.ReplaceAll(".pdf",".root");
+        rlt_file.ReplaceAll(".png",".root");
         #cMassFit.SaveAs(rlt_file.Data());
 
         if logy:
@@ -425,10 +425,10 @@ objName ==objName_before ):
             cMassFit.Update();
             rlt_file.ReplaceAll(".root","_log.root");
             #cMassFit.SaveAs(rlt_file.Data());
-            rlt_file.ReplaceAll(".root",".pdf");
+            rlt_file.ReplaceAll(".root",".png");
             cMassFit.SaveAs(rlt_file.Data());
-            rlt_file.ReplaceAll(".pdf",".png");
-            cMassFit.SaveAs(rlt_file.Data());
+#            rlt_file.ReplaceAll(".pdf",".png");
+#            cMassFit.SaveAs(rlt_file.Data());
 
     #################################################################################################
     #################################################################################################
@@ -569,10 +569,10 @@ objName ==objName_before ):
 
         cMassFit.SaveAs(rlt_file.Data());
 
-        rlt_file.ReplaceAll(".png",".pdf");
-        cMassFit.SaveAs(rlt_file.Data());
+#        rlt_file.ReplaceAll(".png",".pdf");
+#        cMassFit.SaveAs(rlt_file.Data());
         
-        rlt_file.ReplaceAll(".pdf",".root");
+        rlt_file.ReplaceAll(".png",".root");
         #cMassFit.SaveAs(rlt_file.Data());
 
         string_file_name = TString(in_file_name);
@@ -590,10 +590,10 @@ objName ==objName_before ):
             cMassFit.Update();
             rlt_file.ReplaceAll(".root","_log.root");
             #cMassFit.SaveAs(rlt_file.Data());
-            rlt_file.ReplaceAll(".root",".pdf");
+            rlt_file.ReplaceAll(".root",".png");
             cMassFit.SaveAs(rlt_file.Data());
-            rlt_file.ReplaceAll(".pdf",".png");
-            cMassFit.SaveAs(rlt_file.Data());
+#            rlt_file.ReplaceAll(".pdf",".png");
+#            cMassFit.SaveAs(rlt_file.Data());
 
         #self.draw_canvas(mplot,in_directory,string_file_name.Data(),0,logy,1,0,fix_axis);
 
