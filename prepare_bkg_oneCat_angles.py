@@ -1022,18 +1022,18 @@ objName ==objName_before ):
         ####### new added function: sum of exponential and expN to account for angular cuts
         if in_model_name == "Sum_Exp":
             ########## first the ExpN
-            rrv_c_ExpN = RooRealVar("rrv_c_ExpN"+label+"_"+self.channel,"rrv_c_ExpN"+label+"_"+self.channel,-2e-3,-1e-1,-1e-5);
-            rrv_n_ExpN = RooRealVar("rrv_n_ExpN"+label+"_"+self.channel,"rrv_n_ExpN"+label+"_"+self.channel, 4e3, -1e4, 1e4);
+            rrv_c1_ExpN = RooRealVar("rrv_c1_ExpN"+label+"_"+self.channel,"rrv_c1_ExpN"+label+"_"+self.channel,-2e-3,-1e-1,-1e-5);
+            rrv_n1_ExpN = RooRealVar("rrv_n1_ExpN"+label+"_"+self.channel,"rrv_n1_ExpN"+label+"_"+self.channel, 4e3, -1e4, 1e4);
             if rrv_x.getMin() == 700:
-               rrv_n_ExpN = RooRealVar("rrv_n_ExpN"+label+"_"+self.channel,"rrv_n_ExpN"+label+"_"+self.channel, 0, -10000, 10000);               
+               rrv_n1_ExpN = RooRealVar("rrv_n1_ExpN"+label+"_"+self.channel,"rrv_n1_ExpN"+label+"_"+self.channel, 0, -10000, 10000);               
 
-            model1_pdf = ROOT.RooExpNPdf("model_pdf"+label+"_"+self.channel+mass_spectrum,"model_pdf"+label+"_"+self.channel+mass_spectrum,rrv_x,rrv_c_ExpN, rrv_n_ExpN);
+            model1_pdf = ROOT.RooExpNPdf("model1_pdf"+label+"_"+self.channel+mass_spectrum,"model1_pdf"+label+"_"+self.channel+mass_spectrum,rrv_x,rrv_c1_ExpN, rrv_n1_ExpN);
             ########## now the Exp
-            rrv_c_Exp = RooRealVar("rrv_c_Exp"+label+"_"+self.channel,"rrv_c_Exp"+label+"_"+self.channel,-0.05,-0.1,0.);
-            model2_pdf = ROOT.RooExponential("model_pdf"+label+"_"+self.channel+mass_spectrum,"model_pdf"+label+"_"+self.channel+mass_spectrum,rrv_x,rrv_c_Exp);
+            rrv_c2_Exp = RooRealVar("rrv_c2_Exp"+label+"_"+self.channel,"rrv_c2_Exp"+label+"_"+self.channel,-0.05,-1.1,1.);
+            model2_pdf = ROOT.RooExponential("model2_pdf"+label+"_"+self.channel+mass_spectrum,"model2_pdf"+label+"_"+self.channel+mass_spectrum,rrv_x,rrv_c2_Exp);
             ########## now the sum
-            rrv_high = RooRealVar("rrv_high"+label+"_"+self.channel,"rrv_high"+label+"_"+self.channel,0.56,0.,1.);
-            model_pdf = RooAddPdf("model_pdf"+label+"_"+self.channel+mass_spectrum,"model_pdf"+label+"_"+self.channel+mass_spectrum,RooArgList(model1_pdf,model2_pdf),RooArgList(rrv_high),1)
+            rrv_high0 = RooRealVar("rrv_high0"+label+"_"+self.channel,"rrv_high0"+label+"_"+self.channel,0.56,0.,1.);
+            model_pdf = RooAddPdf("model_pdf"+label+"_"+self.channel+mass_spectrum,"model_pdf"+label+"_"+self.channel+mass_spectrum,RooArgList(model1_pdf,model2_pdf),RooArgList(rrv_high0),1)
             
         ## return the pdf
         getattr(self.workspace4fit_,"import")(model_pdf)
