@@ -1326,7 +1326,7 @@ objName ==objName_before ):
                                       self.workspace4fit_.var("rrv_c2_Exp%s_sig_%s"%(label,self.channel)).getVal()-rrv_c2_sb.getVal()+4*rrv_c2_sb.getError() )
             correct_factor1_pdf = RooExpNPdf("correct_factor1_pdf","correct_factor1_pdf",rrv_x,rrv_delta_c1, rrv_delta_n1);
             correct_factor2_pdf = RooExponential("correct_factor2_pdf","correct_factor2_pdf",rrv_x,rrv_delta_c2);
-            correct_factor_pdf = RooAddPdf("correct_factor_pdf","correct_factor_pdf",,RooArgList(correct_factor1_pdf,correct_factor2_pdf),RooArgList(rrv_h0_sb),1)
+            correct_factor_pdf = RooAddPdf("correct_factor_pdf","correct_factor_pdf",RooArgList(correct_factor1_pdf,correct_factor2_pdf),RooArgList(rrv_h0_sb),1)
 
         ###########################################
 
