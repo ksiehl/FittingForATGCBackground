@@ -1032,8 +1032,8 @@ objName ==objName_before ):
             rrv_c2_Exp = RooRealVar("rrv_c2_Exp"+label+"_"+self.channel,"rrv_c2_Exp"+label+"_"+self.channel,-0.05,-1.1,1.);
             model2_pdf = ROOT.RooExponential("model2_pdf"+label+"_"+self.channel+mass_spectrum,"model2_pdf"+label+"_"+self.channel+mass_spectrum,rrv_x,rrv_c2_Exp);
             ########## now the sum
-            rrv_high0 = RooRealVar("rrv_high0"+label+"_"+self.channel,"rrv_high0"+label+"_"+self.channel,0.56,0.,1.);
-            model_pdf = RooAddPdf("model_pdf"+label+"_"+self.channel+mass_spectrum,"model_pdf"+label+"_"+self.channel+mass_spectrum,RooArgList(model1_pdf,model2_pdf),RooArgList(rrv_high0),1)
+            rrv_h0 = RooRealVar("rrv_h0"+label+"_"+self.channel,"rrv_h0"+label+"_"+self.channel,0.56,0.,1.);
+            model_pdf = RooAddPdf("model_pdf"+label+"_"+self.channel+mass_spectrum,"model_pdf"+label+"_"+self.channel+mass_spectrum,RooArgList(model1_pdf,model2_pdf),RooArgList(rrv_h0),1)
             
         ## return the pdf
         getattr(self.workspace4fit_,"import")(model_pdf)
@@ -1311,7 +1311,7 @@ objName ==objName_before ):
             rrv_n1_sb = self.workspace4fit_.var("rrv_n1_ExpN%s_sb_%s"%(label,self.channel));
             rrv_c2_sb = self.workspace4fit_.var("rrv_c2_Exp%s_sb_%s"%(label,self.channel));
             #rrv_h0_sb = RooRealVar("rrv_h0_sb"+label+"_"+self.channel,"rrv_h0_sb"+label+"_"+self.channel,0.56,0.,1.);
-            rrv_h0_sb = self.workspace4fit_.var("rrv_high0%s_sb_%s"%(label,self.channel));
+            rrv_h0_sb = self.workspace4fit_.var("rrv_h0%s_sb_%s"%(label,self.channel));
 
             rrv_delta_c1 = RooRealVar("rrv_delta_c1_ExpN%s_%s"%(label,self.channel),"rrv_delta_c1_ExpN%s_%s"%(label,self.channel),
                                       self.workspace4fit_.var("rrv_c1_ExpN%s_sig_%s"%(label,self.channel)).getVal()-rrv_c1_sb.getVal(),
@@ -1326,6 +1326,7 @@ objName ==objName_before ):
                                       self.workspace4fit_.var("rrv_c2_Exp%s_sig_%s"%(label,self.channel)).getVal()-rrv_c2_sb.getVal()-4*rrv_c2_sb.getError(),
                                       self.workspace4fit_.var("rrv_c2_Exp%s_sig_%s"%(label,self.channel)).getVal()-rrv_c2_sb.getVal()+4*rrv_c2_sb.getError() )
             rrv_delta_h0 = RooRealVar("rrv_delta_h0%s_%s"%(label,self.channel),"rrv_delta_h0%s_%s"%(label,self.channel),
+                                      self.workspace4fit_.var("rrv_h0%s_sig_%s"%(label,self.channel)).getVal()-rrv_h0_sb.getVal(),
                                       self.workspace4fit_.var("rrv_h0%s_sig_%s"%(label,self.channel)).getVal()-rrv_h0_sb.getVal()-4*rrv_h0_sb.getError(),
                                       self.workspace4fit_.var("rrv_h0%s_sig_%s"%(label,self.channel)).getVal()-rrv_h0_sb.getVal()+4*rrv_h0_sb.getError() )
             correct_factor1_pdf = RooExpNPdf("correct_factor1_pdf","correct_factor1_pdf",rrv_x,rrv_delta_c1, rrv_delta_n1);
