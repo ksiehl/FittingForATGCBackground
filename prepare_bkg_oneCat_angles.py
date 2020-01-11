@@ -1326,8 +1326,8 @@ objName ==objName_before ):
                                       self.workspace4fit_.var("rrv_c2_Exp%s_sig_%s"%(label,self.channel)).getVal()-rrv_c2_sb.getVal()-4*rrv_c2_sb.getError(),
                                       self.workspace4fit_.var("rrv_c2_Exp%s_sig_%s"%(label,self.channel)).getVal()-rrv_c2_sb.getVal()+4*rrv_c2_sb.getError() )
             rrv_delta_h0 = RooRealVar("rrv_delta_h0%s_%s"%(label,self.channel),"rrv_delta_h0%s_%s"%(label,self.channel),
-                                      self.workspace4fit_.var("rrv_h0%s_sib_%s"%(label,self.channel)).getVal()-rrv_h0_sb.getVal()-4*rrv_h0_sb.getError(),
-                                      self.workspace4fit_.var("rrv_h0%s_sib_%s"%(label,self.channel)).getVal()-rrv_h0_sb.getVal()+4*rrv_h0_sb.getError() )
+                                      self.workspace4fit_.var("rrv_h0%s_sig_%s"%(label,self.channel)).getVal()-rrv_h0_sb.getVal()-4*rrv_h0_sb.getError(),
+                                      self.workspace4fit_.var("rrv_h0%s_sig_%s"%(label,self.channel)).getVal()-rrv_h0_sb.getVal()+4*rrv_h0_sb.getError() )
             correct_factor1_pdf = RooExpNPdf("correct_factor1_pdf","correct_factor1_pdf",rrv_x,rrv_delta_c1, rrv_delta_n1);
             correct_factor2_pdf = RooExponential("correct_factor2_pdf","correct_factor2_pdf",rrv_x,rrv_delta_c2);
             correct_factor_pdf = RooAddPdf("correct_factor_pdf","correct_factor_pdf",RooArgList(correct_factor1_pdf,correct_factor2_pdf),RooArgList(rrv_delta_h0),1)
