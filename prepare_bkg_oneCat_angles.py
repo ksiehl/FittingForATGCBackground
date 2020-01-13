@@ -824,6 +824,8 @@ objName ==objName_before ):
             rrv_c_ExpN = RooRealVar("rrv_c_ExpN"+label+"_"+self.channel,"rrv_c_ExpN"+label+"_"+self.channel,-2e-3,-1e-1,-1e-5);
             rrv_n_ExpN = RooRealVar("rrv_n_ExpN"+label+"_"+self.channel,"rrv_n_ExpN"+label+"_"+self.channel, 4e3, -1e4, 1e4);
             if rrv_x.getMin() == 700:
+	       print "is 700";
+	       exit(5);
                rrv_n_ExpN = RooRealVar("rrv_n_ExpN"+label+"_"+self.channel,"rrv_n_ExpN"+label+"_"+self.channel, 0, -10000, 10000);               
 
             model_pdf = ROOT.RooExpNPdf("model_pdf"+label+"_"+self.channel+mass_spectrum,"model_pdf"+label+"_"+self.channel+mass_spectrum,rrv_x,rrv_c_ExpN, rrv_n_ExpN);
@@ -2444,5 +2446,5 @@ if __name__ == '__main__':
 
     channel=options.channel;
             
-    pre_limit_sb_correction("method1",channel,40,150,options.mlvj_lo,options.mlvj_hi,"Sum_Exp","ExpTail") #<====insert W+Jets function here
+    pre_limit_sb_correction("method1",channel,40,150,options.mlvj_lo,options.mlvj_hi,"ExpN","ExpTail") #<====insert W+Jets function here
 
