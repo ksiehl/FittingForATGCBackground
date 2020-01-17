@@ -843,7 +843,7 @@ objName ==objName_before ):
                 if self.channel == "el" :
 		 #print "the channel is electron Exp tail message.";
                  if ismc == 1 and label_tstring.Contains("sb"):
-		   print "We in sideband, and is mc.";
+		   print "We in sideband, and is mc Exp tail message.";
                    rrv_s_ExpTail = RooRealVar("rrv_s_ExpTail"+label+"_"+self.channel,"rrv_s_ExpTail"+label+"_"+self.channel, 139,0.,355);
                    rrv_a_ExpTail = RooRealVar("rrv_a_ExpTail"+label+"_"+self.channel,"rrv_a_ExpTail"+label+"_"+self.channel, 2e-2,-1.e-2,5.5e-2);                     
                  elif ismc == 1 and label_tstring.Contains("sig"):
@@ -2456,5 +2456,5 @@ if __name__ == '__main__':
 
     channel=options.channel;
             
-    pre_limit_sb_correction("method1",channel,40,150,options.mlvj_lo,options.mlvj_hi,"ExpTail","ExpTail") #<====insert W+Jets function here
+    pre_limit_sb_correction("method1",channel,40,150,options.mlvj_lo,options.mlvj_hi,"ExpN","ExpTail") #<====insert W+Jets function here
 
