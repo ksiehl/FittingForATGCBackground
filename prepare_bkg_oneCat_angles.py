@@ -835,28 +835,38 @@ objName ==objName_before ):
             print "########### ExpTai = levelled exp funtion for W+jets mlvj ############"
             label_tstring=TString(label);
             if self.wtagger_label.find("LP") != -1:
+	     print "lp is not negative one Exp tail message.";
              rrv_s_ExpTail = RooRealVar("rrv_s_ExpTail"+label+"_"+self.channel,"rrv_s_ExpTail"+label+"_"+self.channel, 250,-1.e6,1e6);
              rrv_a_ExpTail = RooRealVar("rrv_a_ExpTail"+label+"_"+self.channel,"rrv_a_ExpTail"+label+"_"+self.channel, 1e-1,-1.e-2,1e6);
             else:
+		#print "lp is negative one, so we continue Exp tail message.";
                 if self.channel == "el" :
+		 #print "the channel is electron Exp tail message.";
                  if ismc == 1 and label_tstring.Contains("sb"):
+		   print "We in sideband, and is mc.";
                    rrv_s_ExpTail = RooRealVar("rrv_s_ExpTail"+label+"_"+self.channel,"rrv_s_ExpTail"+label+"_"+self.channel, 139,0.,355);
                    rrv_a_ExpTail = RooRealVar("rrv_a_ExpTail"+label+"_"+self.channel,"rrv_a_ExpTail"+label+"_"+self.channel, 2e-2,-1.e-2,5.5e-2);                     
                  elif ismc == 1 and label_tstring.Contains("sig"):
+		   print "We in signal and is mc Exp tail message.";
                    rrv_s_ExpTail = RooRealVar("rrv_s_ExpTail"+label+"_"+self.channel,"rrv_s_ExpTail"+label+"_"+self.channel, 162,18,395);
                    rrv_a_ExpTail = RooRealVar("rrv_a_ExpTail"+label+"_"+self.channel,"rrv_a_ExpTail"+label+"_"+self.channel, 1.6e-2,-1.e-2,5.5e-2);
-                 elif ismc == 0 :  
+                 elif ismc == 0 :
+		     print "Must be in sideband, 'cause isnotmc Exp tail message.";  
                      rrv_s_ExpTail = RooRealVar("rrv_s_ExpTail"+label+"_"+self.channel,"rrv_s_ExpTail"+label+"_"+self.channel, 161,70,240);
                      rrv_a_ExpTail = RooRealVar("rrv_a_ExpTail"+label+"_"+self.channel,"rrv_a_ExpTail"+label+"_"+self.channel, 8e-3,-1e-2,1.3e-1);
                            
                 if self.channel == "mu" or self.channel == "em":
+		 #print "channel is muon Exp tail message."
                  if ismc == 1 and label_tstring.Contains("sb"):
+		   print "We in sideband, and is mc Exp tail message."
                    rrv_s_ExpTail = RooRealVar("rrv_s_ExpTail"+label+"_"+self.channel,"rrv_s_ExpTail"+label+"_"+self.channel, 250,-1.e6,1e6);
                    rrv_a_ExpTail = RooRealVar("rrv_a_ExpTail"+label+"_"+self.channel,"rrv_a_ExpTail"+label+"_"+self.channel, 3e-2,-1e-2,7.5e-2);                                      
                  elif ismc == 1 and label_tstring.Contains("sig"):
+		   print "We in signal and is mc Exp tail message.";
                    rrv_s_ExpTail = RooRealVar("rrv_s_ExpTail"+label+"_"+self.channel,"rrv_s_ExpTail"+label+"_"+self.channel, 110,20,500);
                    rrv_a_ExpTail = RooRealVar("rrv_a_ExpTail"+label+"_"+self.channel,"rrv_a_ExpTail"+label+"_"+self.channel, 2.9e-2,-1,7.5e-2);
                  elif ismc == 0 :  
+		     print "Must be in sideband, 'cause isnotmc Exp tail message.";
                      rrv_s_ExpTail = RooRealVar("rrv_s_ExpTail"+label+"_"+self.channel,"rrv_s_ExpTail"+label+"_"+self.channel, 161,40,280);
                      rrv_a_ExpTail = RooRealVar("rrv_a_ExpTail"+label+"_"+self.channel,"rrv_a_ExpTail"+label+"_"+self.channel, 8e-3,-1e-2,1.3e-1);    
       
@@ -1523,7 +1533,7 @@ objName ==objName_before ):
             ptChannel.Draw("same")
 
             c1.SaveAs(self.plotsDir+'/other/alpha_%s_%s.png'%(self.channel,self.wtagger_label))
-            c1.SaveAs(self.plotsDir+'/other/alpha_%s_%s.pdf'%(self.channel,self.wtagger_label))
+            #c1.SaveAs(self.plotsDir+'/other/alpha_%s_%s.pdf'%(self.channel,self.wtagger_label))
             
             pad.Delete()
             pad_log.Delete()
@@ -2446,5 +2456,5 @@ if __name__ == '__main__':
 
     channel=options.channel;
             
-    pre_limit_sb_correction("method1",channel,40,150,options.mlvj_lo,options.mlvj_hi,"ExpN","ExpTail") #<====insert W+Jets function here
+    pre_limit_sb_correction("method1",channel,40,150,options.mlvj_lo,options.mlvj_hi,"ExpTail","ExpTail") #<====insert W+Jets function here
 
