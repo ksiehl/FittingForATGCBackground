@@ -38,7 +38,7 @@ rm tree_WJets?_mu.root # this step can be skipped if you're worried about haddin
 cd -
 
 # Move the new trees
-mv ../background_output_storage/ /afs/cern.ch/work/k/ksiehl//public/ansar_project/BCKGRND_STEP/CMSSW_5_3_32/src/FittingForATGCBackground/InputTrees/
+mv ../background_output_storage/ ../BCKGRND_STEP/CMSSW_5_3_32/src/FittingForATGCBackground/InputTrees/
 
 # New PDFs can be added in PDFs/HWWLVJRooPdfs.cxx, which has to be compiled in ROOT using (in this order)
 # But before compiling the c scripts, we have to tell ROOT where Roofit headers are since CMS builds RooFit not as a part of ROOT.
